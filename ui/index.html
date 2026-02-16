@@ -1,0 +1,19 @@
+// generate a simple html page with a button that says "Click me!" and an empty div below it. When the button is clicked, the text "Button was clicked!" should appear in the div.
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Example</title>
+</head>
+<body>
+    <button id="clickButton">Click me!</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('clickButton').addEventListener('click', function() {
+            document.getElementById('result').textContent = 'Button was clicked!';
+        });
+    </script>   
+</body>
+</html>
