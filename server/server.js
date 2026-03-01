@@ -67,34 +67,43 @@ app.post("/signup", async (req, res) => {
 // Login Route
 app.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const email = req.body.email.trim().toLowerCase();
+    const password = req.body.password;
 
-    // 1️⃣ Check if user exists
+    console.log("Email from frontend:", email);
+    console.log("Password from frontend:", password);
+
     const user = await pool.query(
-      "SELECT * FROM students WHERE email = $1",
+      "SELECT * FROM students WHERE LOWER(email) = $1",
       [email]
     );
 
+    console.log("User from DB:", user.rows);
+
     if (user.rows.length === 0) {
+      console.log("❌ User NOT found");
       return res.status(400).json({ error: "Invalid credentials" });
     }
 
-    // 2️⃣ Compare password
     const validPassword = await bcrypt.compare(
       password,
       user.rows[0].password
     );
 
+    console.log("Password match result:", validPassword);
+
     if (!validPassword) {
+      console.log("❌ Password NOT matching");
       return res.status(400).json({ error: "Invalid credentials" });
     }
 
-    // 3️⃣ Generate JWT
     const token = jwt.sign(
       { id: user.rows[0].id },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
+
+    console.log("✅ Login successful");
 
     res.json({
       message: "Login successful",
@@ -102,27 +111,7 @@ app.post("/login", async (req, res) => {
     });
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-app.get("/dashboard", authenticateToken, async (req, res) => {
-  res.json({
-    message: "Welcome to dashboard",
-    userId: req.user.id
-  });
-});
-
-
-app.get("/students", authenticateToken, async (req, res) => {
-  try {
-    const students = await pool.query(
-      "SELECT id, name, email, department, year FROM students"
-    );
-    res.json(students.rows);
-  } catch (err) {
-    console.error(err);
+    console.error("Server error:", err);
     res.status(500).json({ error: "Server error" });
   }
 });

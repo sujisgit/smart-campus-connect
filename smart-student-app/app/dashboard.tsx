@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
-const API_URL = "http://10.152.139.12:5000";
+const API_URL = "http://localhost:5000";
 
 export default function Dashboard() {
   const [students, setStudents] = useState<any[]>([]);
@@ -19,6 +20,7 @@ export default function Dashboard() {
   const [department, setDepartment] = useState("");
   const [year, setYear] = useState("");
   const [editingId, setEditingId] = useState<number | null>(null);
+  const router = useRouter();
 
   const getToken = async () => {
     return await AsyncStorage.getItem("token");
@@ -78,13 +80,24 @@ export default function Dashboard() {
     setEditingId(null);
   };
 
+  const logout = async () => {
+  await AsyncStorage.removeItem("token");
+  router.replace("/login");
+  };
+
   useEffect(() => {
     fetchStudents();
   }, []);
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.header}>Smart Campus</Text>
+      
+    <View style={styles.headerRow}>
+     <Text style={styles.header}>Smart Campus</Text>
+     <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+      <Text style={styles.buttonText}>Logout</Text>
+     </TouchableOpacity>
+    </View>
 
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>
@@ -175,6 +188,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: "#2c3e50",
   },
+
+  headerRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: 20,
+  },
+
+logoutButton: {
+  backgroundColor: "#ef4444",
+  paddingVertical: 8,
+  paddingHorizontal: 14,
+  borderRadius: 10,
+},
+
   card: {
     backgroundColor: "#ffffff",
     padding: 20,

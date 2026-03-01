@@ -3,8 +3,9 @@ import { View, Text, TextInput, Button, Alert } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
+import { API_URL } from "../config";
 
-const API_URL = "http://10.152.139.12:5000";
+
 
 export default function Login() {
   const router = useRouter();
