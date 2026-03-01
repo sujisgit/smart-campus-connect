@@ -1,1 +1,1 @@
-A college capus application
+A college campus application
