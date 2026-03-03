@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import { API_URL } from "@/config";
+import { API_URL } from "../config";
 
 
 
