@@ -5,8 +5,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { API_URL } from "../config";
 
-
-
 export default function Login() {
   const router = useRouter();
 
@@ -49,6 +47,13 @@ export default function Login() {
       />
 
       <Button title="Login" onPress={loginUser} />
+
+      <Text
+        style={{ marginTop: 15, color: "blue", textAlign: "center" }}
+        onPress={() => router.push("/signup")}
+      >
+        Don&apos;t have an account? Sign Up
+      </Text>
     </View>
   );
 }
