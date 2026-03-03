@@ -11,8 +11,9 @@ import {
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
+import { API_URL } from "@/config";
 
-const API_URL = "http://localhost:5000";
+
 
 export default function Dashboard() {
   const [students, setStudents] = useState<any[]>([]);
@@ -26,7 +27,7 @@ export default function Dashboard() {
     return await AsyncStorage.getItem("token");
   };
 
-  const fetchStudents = async () => {
+  const fetchStudents = async () => {    
     const token = await getToken();
     const response = await axios.get(`${API_URL}/students`, {
       headers: { Authorization: `Bearer ${token}` },
