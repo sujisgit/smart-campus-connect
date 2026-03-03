@@ -179,56 +179,69 @@ export default function Dashboard() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f4f6f9",
+    flex: 1, // ✅ VERY IMPORTANT
+    backgroundColor: "#f8fafc",
     padding: 20,
   },
+
   header: {
-    fontSize: 26,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "#2c3e50",
+    fontSize: 28,
+    fontWeight: "800",
+    color: "#1e293b",
   },
 
   headerRow: {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  marginBottom: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
   },
 
-logoutButton: {
-  backgroundColor: "#ef4444",
-  paddingVertical: 8,
-  paddingHorizontal: 14,
-  borderRadius: 10,
-},
+  logoutButton: {
+    backgroundColor: "#ef4444",
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+  },
 
   card: {
     backgroundColor: "#ffffff",
-    padding: 20,
-    borderRadius: 16,
+    padding: 24,
+    borderRadius: 20,
     marginBottom: 20,
-    elevation: 4,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 8,
   },
+
   sectionTitle: {
     fontSize: 18,
     fontWeight: "600",
     marginBottom: 15,
     color: "#34495e",
   },
+
   input: {
     backgroundColor: "#f1f3f6",
     padding: 12,
     borderRadius: 12,
     marginBottom: 12,
   },
+
   primaryButton: {
-    backgroundColor: "#3b82f6",
-    padding: 14,
-    borderRadius: 12,
+    backgroundColor: "#2563eb",
+    padding: 16,
+    borderRadius: 16,
     alignItems: "center",
-    marginTop: 5,
+    shadowColor: "#2563eb",
+    shadowOpacity: 0.4,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 6,
   },
+
   editButton: {
     backgroundColor: "#10b981",
     padding: 10,
@@ -237,6 +250,7 @@ logoutButton: {
     marginRight: 5,
     alignItems: "center",
   },
+
   deleteButton: {
     backgroundColor: "#ef4444",
     padding: 10,
@@ -245,25 +259,39 @@ logoutButton: {
     marginLeft: 5,
     alignItems: "center",
   },
+
   buttonText: {
-    color: "#fff",
+    color: "#ffffff",
     fontWeight: "600",
   },
+
   studentCard: {
     backgroundColor: "#ffffff",
-    padding: 15,
-    borderRadius: 14,
-    marginBottom: 12,
-    elevation: 3,
+    padding: 20,
+    borderRadius: 20,
+    marginBottom: 20,
+
+    // iOS Shadow
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+
+    // Android Shadow
+    elevation: 8,
   },
+
   studentName: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#0f172a",
   },
+
   studentInfo: {
     color: "#555",
     marginBottom: 10,
   },
+
   buttonRow: {
     flexDirection: "row",
   },
